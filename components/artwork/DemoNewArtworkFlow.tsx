@@ -66,7 +66,7 @@ export function DemoNewArtworkFlow() {
           飾るたびに、あなたの小さな個展が育っていく。
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/theme/demo-theme">今日の展示を見る</ButtonLink>
+          <ButtonLink href="/theme/demo-theme?open=1">今日の展示を見る</ButtonLink>
           <ButtonLink href="/me" variant="secondary">
             自分の展示室へ
           </ButtonLink>
