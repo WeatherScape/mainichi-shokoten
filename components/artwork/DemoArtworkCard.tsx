@@ -16,6 +16,7 @@ export type DemoArtwork = {
   note: string;
   frameStyle: FrameStyle;
   variant: DemoArtworkVariant;
+  imageSrc: string;
 };
 
 export const DEMO_ARTWORKS: DemoArtwork[] = [
@@ -24,58 +25,50 @@ export const DEMO_ARTWORKS: DemoArtwork[] = [
     material: "透明水彩",
     note: "朝の光がにじむ感じを残しました。",
     frameStyle: "blank",
-    variant: "watercolor"
+    variant: "watercolor",
+    imageSrc: "/demo-art/watercolor.png"
   },
   {
     id: "pastel",
     material: "オイルパステル",
     note: "湯気より、あたたかい色を描きました。",
     frameStyle: "wood",
-    variant: "pastel"
+    variant: "pastel",
+    imageSrc: "/demo-art/pastel.png"
   },
   {
     id: "pen",
     material: "ペン画",
     note: "カップの影だけを線で追いました。",
     frameStyle: "mat",
-    variant: "pen"
+    variant: "pen",
+    imageSrc: "/demo-art/pen.png"
   },
   {
     id: "pencil",
     material: "色鉛筆",
     note: "白い余白を多めに残しました。",
     frameStyle: "blank",
-    variant: "pencil"
+    variant: "pencil",
+    imageSrc: "/demo-art/pencil.png"
   },
   {
     id: "acrylic",
     material: "アクリル",
     note: "机の上の光をはっきり描きました。",
     frameStyle: "black",
-    variant: "acrylic"
+    variant: "acrylic",
+    imageSrc: "/demo-art/acrylic.png"
   },
   {
     id: "digital",
     material: "デジタル",
     note: "静かな朝の空気を重ねました。",
     frameStyle: "mat",
-    variant: "digital"
+    variant: "digital",
+    imageSrc: "/demo-art/digital.png"
   }
 ];
-
-function DemoArt({ variant }: { variant: DemoArtworkVariant }) {
-  return (
-    <div className={cn("relative h-full w-full overflow-hidden bg-[#fbf8f0]", `demo-art-${variant}`)}>
-      <div className="absolute left-[24%] top-[27%] h-[34%] w-[38%] rounded-b-[42%] rounded-t-[18%] border border-ink/45 bg-wall/70" />
-      <div className="absolute left-[58%] top-[34%] h-[17%] w-[18%] rounded-full border border-ink/35 bg-transparent" />
-      <div className="absolute left-[23%] top-[62%] h-[7%] w-[50%] rounded-full bg-ink/10 blur-sm" />
-      <div className="mark mark-a" />
-      <div className="mark mark-b" />
-      <div className="mark mark-c" />
-      <div className="mark mark-line" />
-    </div>
-  );
-}
 
 export function DemoArtworkCard({
   artwork,
@@ -92,8 +85,13 @@ export function DemoArtworkCard({
       )}
     >
       <FrameShell frameStyle={artwork.frameStyle}>
-        <div className={cn("aspect-[4/5] overflow-hidden bg-paper", locked && "locked-blur")}>
-          <DemoArt variant={artwork.variant} />
+        <div className={cn("aspect-square overflow-hidden bg-paper", locked && "locked-blur")}>
+          <img
+            src={artwork.imageSrc}
+            alt={`${artwork.material}で描いたコーヒーカップ`}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
         </div>
       </FrameShell>
       <div className="space-y-3 px-1 pb-1 pt-4">
