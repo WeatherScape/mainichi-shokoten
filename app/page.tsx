@@ -1,4 +1,5 @@
 import { Brush, GalleryHorizontal, KeyRound } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { ArtworkCard } from "@/components/artwork/ArtworkCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -11,6 +12,28 @@ import {
 } from "@/lib/supabase/queries";
 
 export const dynamic = "force-dynamic";
+
+const conceptItems: Array<{
+  icon: LucideIcon;
+  title: string;
+  body: string;
+}> = [
+  {
+    icon: Brush,
+    title: "今日のテーマを、好きな画材で描く。",
+    body: "水彩でも、鉛筆でも、デジタルでも。うまさではなく、見え方の違いを楽しみます。"
+  },
+  {
+    icon: GalleryHorizontal,
+    title: "描いたら、展示室に飾る。",
+    body: "スマホ写真を整え、額縁と白い壁で、作品として静かに並べます。"
+  },
+  {
+    icon: KeyRound,
+    title: "飾ると、みんなの見え方がひらく。",
+    body: "先に比べないために、同じテーマのギャラリーは飾ったあとで開きます。"
+  }
+];
 
 export default async function HomePage() {
   const user = await getSessionUser();
@@ -26,31 +49,18 @@ export default async function HomePage() {
       <ThemeHero theme={theme} hasArtwork={Boolean(myArtwork)} />
 
       <section className="mx-auto grid max-w-6xl gap-6 px-4 py-14 sm:px-6 lg:grid-cols-3">
-        {[
-          {
-            icon: Brush,
-            title: "今日のテーマを、好きな画材で描く。",
-            body: "水彩でも、鉛筆でも、デジタルでも。うまさではなく、見え方の違いを楽しみます。"
-          },
-          {
-            icon: GalleryHorizontal,
-            title: "描いたら、展示室に飾る。",
-            body: "スマホ写真を整え、額縁と白い壁で、作品として静かに並べます。"
-          },
-          {
-            icon: KeyRound,
-            title: "飾ると、みんなの見え方がひらく。",
-            body: "先に比べないために、同じテーマのギャラリーは飾ったあとで開きます。"
-          }
-        ].map((item) => (
-          <article key={item.title} className="border border-line bg-wall p-6 shadow-paper">
-            <div className="grid h-10 w-10 place-items-center border border-line bg-paper text-sage">
-              <item.icon size={18} aria-hidden="true" />
-            </div>
-            <h2 className="mt-5 text-xl font-light leading-8 text-ink">{item.title}</h2>
-            <p className="mt-3 text-sm leading-7 text-muted">{item.body}</p>
-          </article>
-        ))}
+        {conceptItems.map((item) => {
+          const Icon = item.icon;
+          return (
+            <article key={item.title} className="border border-line bg-wall p-6 shadow-paper">
+              <div className="grid h-10 w-10 place-items-center border border-line bg-paper text-sage">
+                <Icon size={18} aria-hidden="true" />
+              </div>
+              <h2 className="mt-5 text-xl font-light leading-8 text-ink">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.body}</p>
+            </article>
+          );
+        })}
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
