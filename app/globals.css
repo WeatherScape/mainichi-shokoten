@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", "Hiragino Sans", "Yu Gothic", "YuGothic",
+    "Noto Sans JP", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #f6f1e8;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(246, 241, 232, 0.98)),
+    #f6f1e8;
+  color: #27231d;
+  font-family: var(--font-sans);
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: #d8c6a6;
+  color: #27231d;
+}
+
+.wall-band {
+  background:
+    linear-gradient(90deg, rgba(222, 214, 200, 0.24) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(222, 214, 200, 0.18) 1px, transparent 1px),
+    #fffdf8;
+  background-size: 44px 44px;
+}
+
+.frame-base {
+  position: relative;
+  width: 100%;
+  background: #fffdf8;
+  transition:
+    box-shadow 160ms ease,
+    transform 160ms ease,
+    border-color 160ms ease;
+}
+
+.frame-blank {
+  padding: clamp(10px, 3vw, 22px);
+  border: 1px solid #e8dfcf;
+  box-shadow: 0 12px 30px rgba(47, 54, 51, 0.07);
+}
+
+.frame-wood {
+  padding: clamp(10px, 3vw, 18px);
+  border: 7px solid #b2865b;
+  box-shadow:
+    inset 0 0 0 1px rgba(91, 59, 32, 0.18),
+    0 16px 38px rgba(47, 54, 51, 0.12);
+}
+
+.frame-mat {
+  padding: clamp(20px, 6vw, 42px);
+  border: 1px solid #e3dccf;
+  box-shadow:
+    inset 0 0 0 12px #faf8f1,
+    0 18px 44px rgba(47, 54, 51, 0.09);
+}
+
+.frame-black {
+  padding: clamp(12px, 4vw, 28px);
+  border: 8px solid #25231f;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 253, 248, 0.22),
+    0 18px 48px rgba(47, 54, 51, 0.16);
+}
+
+.frame-museum {
+  padding: clamp(18px, 6vw, 46px);
+  border: 10px double #c1ad85;
+  background: #fffaf0;
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 111, 67, 0.24),
+    0 20px 56px rgba(47, 54, 51, 0.13);
+}
+
+.art-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #eee7da;
+}
+
+.locked-blur {
+  filter: blur(12px) saturate(0.76);
+  transform: scale(1.02);
+}
+
+.range-input {
+  accent-color: #667761;
+}
