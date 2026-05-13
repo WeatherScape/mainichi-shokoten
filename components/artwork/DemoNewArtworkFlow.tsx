@@ -8,6 +8,7 @@ import { Button, ButtonLink } from "@/components/ui/Button";
 import { FRAME_STYLES, MATERIALS } from "@/lib/constants";
 import type { FrameStyle, ImageAdjustments, Material } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { markDemoArtworkFramed } from "@/components/theme/DemoThemeGallery";
 
 const demoFrames = FRAME_STYLES.filter((frame) =>
   ["blank", "wood", "mat", "black"].includes(frame.id)
@@ -51,6 +52,11 @@ export function DemoNewArtworkFlow() {
 
   function updateAdjustment(key: keyof ImageAdjustments, value: number) {
     setAdjustments((current) => ({ ...current, [key]: value }));
+  }
+
+  function completeDemoFraming() {
+    markDemoArtworkFramed();
+    setCompleted(true);
   }
 
   if (completed) {
@@ -222,7 +228,7 @@ export function DemoNewArtworkFlow() {
             <p className="text-sm leading-7 text-ink">
               {note || "今日見つけた色、線、気分をひとこと"}
             </p>
-            <Button className="w-full" onClick={() => setCompleted(true)}>
+            <Button className="w-full" onClick={completeDemoFraming}>
               展示室に飾る
             </Button>
           </div>
