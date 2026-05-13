@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { DemoNewArtworkFlow } from "@/components/artwork/DemoNewArtworkFlow";
 import { NewArtworkFlow } from "@/components/artwork/NewArtworkFlow";
 import {
   getTheme,
@@ -15,6 +16,21 @@ export default async function NewArtworkPage({
 }: {
   searchParams: { themeId?: string };
 }) {
+  if (searchParams.themeId === "demo-theme") {
+    return (
+      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <section className="mb-8">
+          <p className="text-sm text-muted">new work for today's wall</p>
+          <h1 className="mt-3 text-4xl font-light text-ink">「コーヒーカップ」を飾る</h1>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
+            描く、整える、額縁に入れる、展示室に飾る。まずは自分の一枚から始めます。
+          </p>
+        </section>
+        <DemoNewArtworkFlow />
+      </main>
+    );
+  }
+
   const user = await requireSessionUser();
   const theme = searchParams.themeId
     ? await getTheme(searchParams.themeId)

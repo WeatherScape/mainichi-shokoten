@@ -119,3 +119,154 @@ select {
 .range-input {
   accent-color: #667761;
 }
+
+.demo-art-watercolor {
+  background:
+    radial-gradient(circle at 38% 30%, rgba(160, 184, 178, 0.38), transparent 30%),
+    radial-gradient(circle at 66% 62%, rgba(197, 143, 116, 0.22), transparent 34%),
+    #fbf8f0;
+}
+
+.demo-art-pastel {
+  background:
+    linear-gradient(135deg, rgba(218, 152, 97, 0.34), transparent 46%),
+    radial-gradient(circle at 58% 44%, rgba(133, 94, 76, 0.23), transparent 32%),
+    #fff7ea;
+}
+
+.demo-art-pen {
+  background:
+    repeating-linear-gradient(150deg, transparent 0 16px, rgba(39, 35, 29, 0.08) 17px 18px),
+    #fffdf8;
+}
+
+.demo-art-pencil {
+  background:
+    linear-gradient(180deg, rgba(245, 232, 204, 0.34), transparent 58%),
+    #fffdf8;
+}
+
+.demo-art-acrylic {
+  background:
+    linear-gradient(115deg, rgba(75, 91, 82, 0.32), transparent 38%),
+    linear-gradient(45deg, transparent 48%, rgba(175, 109, 79, 0.32) 49% 66%, transparent 67%),
+    #f6f1e8;
+}
+
+.demo-art-digital {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(108, 127, 147, 0.2), transparent 34%),
+    linear-gradient(180deg, rgba(255, 253, 248, 0.2), rgba(102, 119, 97, 0.16)),
+    #f8f8f2;
+}
+
+.demo-art-watercolor .mark-a {
+  left: 18%;
+  top: 18%;
+  width: 42%;
+  height: 28%;
+  border-radius: 999px;
+  background: rgba(123, 153, 163, 0.22);
+  filter: blur(10px);
+}
+
+.demo-art-watercolor .mark-b {
+  right: 14%;
+  bottom: 21%;
+  width: 34%;
+  height: 24%;
+  border-radius: 999px;
+  background: rgba(196, 141, 104, 0.18);
+  filter: blur(8px);
+}
+
+.demo-art-pastel .mark-a {
+  left: 18%;
+  top: 16%;
+  width: 58%;
+  height: 18%;
+  border-radius: 999px;
+  background: rgba(211, 134, 72, 0.38);
+  transform: rotate(-16deg);
+}
+
+.demo-art-pastel .mark-b {
+  right: 10%;
+  top: 42%;
+  width: 34%;
+  height: 16%;
+  border-radius: 999px;
+  background: rgba(116, 87, 72, 0.22);
+  transform: rotate(18deg);
+}
+
+.demo-art-pen .mark-line {
+  left: 20%;
+  top: 18%;
+  width: 56%;
+  height: 58%;
+  border: 1px solid rgba(39, 35, 29, 0.5);
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 50%;
+}
+
+.demo-art-pen .mark-a,
+.demo-art-pencil .mark-a {
+  left: 28%;
+  top: 24%;
+  width: 26%;
+  height: 34%;
+  border: 1px solid rgba(39, 35, 29, 0.35);
+  border-radius: 48%;
+  background: transparent;
+}
+
+.demo-art-pencil .mark-b {
+  left: 19%;
+  bottom: 19%;
+  width: 60%;
+  height: 1px;
+  background: rgba(39, 35, 29, 0.2);
+  transform: rotate(-8deg);
+}
+
+.demo-art-acrylic .mark-a {
+  left: 9%;
+  top: 17%;
+  width: 36%;
+  height: 28%;
+  background: rgba(96, 112, 91, 0.38);
+  transform: rotate(-9deg);
+}
+
+.demo-art-acrylic .mark-b {
+  right: 13%;
+  bottom: 19%;
+  width: 44%;
+  height: 18%;
+  background: rgba(168, 107, 76, 0.36);
+  transform: rotate(8deg);
+}
+
+.demo-art-digital .mark-a {
+  left: 16%;
+  top: 18%;
+  width: 68%;
+  height: 58%;
+  border: 1px solid rgba(96, 112, 132, 0.28);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(99, 128, 138, 0.14));
+}
+
+.demo-art-digital .mark-c {
+  right: 18%;
+  top: 22%;
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: rgba(102, 119, 97, 0.2);
+}
+
+.mark {
+  position: absolute;
+}

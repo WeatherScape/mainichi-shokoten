@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { DemoArtworkGrid } from "@/components/artwork/DemoArtworkCard";
 import { GalleryGrid } from "@/components/artwork/GalleryGrid";
 import { LockedGalleryNotice } from "@/components/theme/LockedGalleryNotice";
 import { ButtonLink } from "@/components/ui/Button";
@@ -13,6 +14,42 @@ import { formatDateJa } from "@/lib/utils";
 export const dynamic = "force-dynamic";
 
 export default async function ThemePage({ params }: { params: { id: string } }) {
+  if (params.id === "demo-theme") {
+    return (
+      <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <section className="mb-10 border-b border-line pb-8">
+          <p className="text-sm text-muted">今日のテーマ</p>
+          <h1 className="mt-3 text-5xl font-light leading-tight text-ink">
+            コーヒーカップ
+          </h1>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">
+            先に比べない。まずは自分の一枚を飾る。飾ると、みんなの見え方がひらきます。
+          </p>
+          <div className="mt-7">
+            <ButtonLink href="/new?themeId=demo-theme">描いたら飾る</ButtonLink>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden">
+          <DemoArtworkGrid locked />
+          <div className="absolute inset-0 grid place-items-center bg-wall/62 px-4 backdrop-blur-[2px]">
+            <div className="max-w-xl border border-line bg-wall/95 p-7 text-center shadow-hush">
+              <h2 className="text-2xl font-light leading-9 text-ink">
+                あなたの一枚を飾ると、みんなの見え方がひらきます。
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-muted">
+                先に比べてしまわないように、同じテーマの展示は飾ったあとで開きます。
+              </p>
+              <ButtonLink className="mt-6" href="/new?themeId=demo-theme">
+                描いたら飾る
+              </ButtonLink>
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   const [theme, user] = await Promise.all([getTheme(params.id), getSessionUser()]);
 
   if (!theme) {

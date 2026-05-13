@@ -1,12 +1,10 @@
 import { Brush, GalleryHorizontal, KeyRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { ArtworkCard } from "@/components/artwork/ArtworkCard";
+import { DemoArtworkGrid } from "@/components/artwork/DemoArtworkCard";
 import { ButtonLink } from "@/components/ui/Button";
-import { EmptyState } from "@/components/ui/EmptyState";
 import { ThemeHero } from "@/components/theme/ThemeHero";
 import {
   getArtworkForTheme,
-  getRecentArtworks,
   getSessionUser,
   getTodayTheme
 } from "@/lib/supabase/queries";
@@ -42,7 +40,6 @@ export default async function HomePage() {
     user && theme.id !== "demo-theme"
       ? await getArtworkForTheme(user.id, theme.id)
       : null;
-  const recentArtworks = await getRecentArtworks(6);
 
   return (
     <main>
@@ -65,33 +62,24 @@ export default async function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-sm text-muted">recently framed</p>
-            <h2 className="mt-2 text-3xl font-light text-ink">最近飾られた作品</h2>
+          <div className="max-w-2xl">
+            <p className="text-sm text-muted">six views of one theme</p>
+            <h2 className="mt-2 text-3xl font-light text-ink">
+              同じテーマなのに、世界はこんなに違って見える。
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-muted">
+              透明水彩、ペン画、オイルパステル。うまさではなく、見え方の違いを楽しみます。
+              スマホで撮った絵も、額縁に入れると作品になります。
+            </p>
           </div>
-          <ButtonLink href={`/theme/${theme.id}`} variant="secondary">
-            今日の展示へ
+          <ButtonLink href="/theme/demo-theme" variant="secondary">
+            展示を見る
           </ButtonLink>
         </div>
-        {recentArtworks.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {recentArtworks.map((artwork) => (
-              <ArtworkCard
-                key={artwork.id}
-                artwork={artwork}
-                currentUserId={user?.id}
-                locked={artwork.theme_id === theme.id && !myArtwork}
-              />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            title="最初の壁は、まだ静かです。"
-            body="今日のテーマを描いて飾ると、ここに小さな展示が生まれます。"
-            href={`/new?themeId=${theme.id}`}
-            action="描いたら飾る"
-          />
-        )}
+        <DemoArtworkGrid />
+        <div className="mt-8 border border-line bg-wall px-5 py-4 text-sm leading-7 text-muted shadow-paper">
+          先に比べない。まずは自分の一枚を飾る。飾るたびに、あなたの小さな個展が育っていく。
+        </div>
       </section>
     </main>
   );
