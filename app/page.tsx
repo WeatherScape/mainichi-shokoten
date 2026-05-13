@@ -76,7 +76,7 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/new?themeId=demo-theme">このテーマで飾る</ButtonLink>
+            <ButtonLink href="/new?themeId=demo-theme">まず一枚飾ってみる</ButtonLink>
             <ButtonLink href="/theme/demo-theme" variant="secondary">
               展示を見る
             </ButtonLink>

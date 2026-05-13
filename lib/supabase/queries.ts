@@ -80,6 +80,7 @@ export async function getArtworkForTheme(userId: string, themeId: string) {
     .select("*")
     .eq("user_id", userId)
     .eq("theme_id", themeId)
+    .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 

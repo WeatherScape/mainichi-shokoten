@@ -1,9 +1,8 @@
 import { redirect, notFound } from "next/navigation";
-import { Check, GalleryHorizontal } from "lucide-react";
 import { GalleryGrid } from "@/components/artwork/GalleryGrid";
 import { MaterialFilter } from "@/components/artwork/MaterialFilter";
+import { YourArtworkSpotlight } from "@/components/artwork/YourArtworkSpotlight";
 import { LockedGalleryNotice } from "@/components/theme/LockedGalleryNotice";
-import { ButtonLink } from "@/components/ui/Button";
 import { MATERIALS } from "@/lib/constants";
 import {
   getArtworkForTheme,
@@ -43,6 +42,9 @@ export default async function GalleryPage({
     ? await getThemeArtworks(theme.id, material)
     : await getThemeArtworks(theme.id);
   const justOpened = searchParams.opened === "1";
+  const galleryArtworks = myArtwork
+    ? artworks.filter((artwork) => artwork.id !== myArtwork.id)
+    : artworks;
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -56,43 +58,25 @@ export default async function GalleryPage({
 
       {myArtwork ? (
         <>
-          {justOpened ? (
-            <section className="mb-7 border border-sage/50 bg-wall p-5 shadow-paper">
-              <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-end">
-                <div className="max-w-2xl">
-                  <div className="mb-4 inline-flex items-center gap-2 border border-sage bg-paper px-3 py-2 text-xs text-sage">
-                    <Check size={14} aria-hidden="true" />
-                    展示がひらきました
-                  </div>
-                  <h2 className="text-2xl font-light leading-tight text-ink">
-                    あなたの一枚が壁にかかりました。
-                  </h2>
-                  <p className="mt-3 text-sm leading-7 text-muted">
-                    ここから、同じテーマを見た人たちの色や線がひらきます。
-                    まずは自分の一枚を置いたあとで、ゆっくり眺めてください。
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <ButtonLink href="/me" variant="secondary">
-                    自分の展示室へ
-                  </ButtonLink>
-                  <ButtonLink href={`/new?themeId=${theme.id}`}>
-                    もう一枚飾る
-                  </ButtonLink>
-                </div>
+          <YourArtworkSpotlight
+            artwork={myArtwork}
+            theme={theme}
+            justOpened={justOpened}
+          />
+          <section id="everyone-gallery" className="scroll-mt-24">
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-sm text-muted">everyone's wall</p>
+                <h2 className="mt-2 text-3xl font-light text-ink">みんなの見え方</h2>
               </div>
-            </section>
-          ) : (
-            <section className="mb-7 border border-line bg-wall p-4 shadow-paper">
-              <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
-                <GalleryHorizontal size={17} aria-hidden="true" className="text-sage" />
-                <span>あなたの一枚を飾ったので、このテーマの展示が開いています。</span>
-              </div>
-            </section>
-          )}
+              <p className="max-w-md text-sm leading-7 text-muted">
+                あなたの一枚を置いたあとで眺めるから、違いがやさしく見えてきます。
+              </p>
+            </div>
+          </section>
           <MaterialFilter themeId={theme.id} current={material} />
           <div className="mt-6">
-            <GalleryGrid artworks={artworks} currentUserId={user.id} />
+            <GalleryGrid artworks={galleryArtworks} currentUserId={user.id} />
           </div>
         </>
       ) : (

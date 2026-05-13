@@ -42,6 +42,26 @@ export function RoomGrowthPanel({
   const nextProgressPercent = nextProgress
     ? Math.min(100, Math.round((nextProgress.current / nextProgress.required) * 100))
     : 100;
+  const roomStage =
+    stats.total === 0
+      ? {
+          title: "まだ静かな白い壁です。",
+          body: "最初の一枚を飾ると、この場所があなたの展示室として動きはじめます。"
+        }
+      : stats.total < 3
+        ? {
+            title: "最初の壁ができました。",
+            body: "あと少しで細い木枠が開きます。作品が増えるほど、壁の表情も変わります。"
+          }
+        : stats.streak >= 7
+          ? {
+              title: "小個展がひらいています。",
+              body: "続けて描いた日々が、ひとつの展示として見えるようになりました。"
+            }
+          : {
+              title: "展示室が育ちはじめました。",
+              body: "額縁やバッジが少しずつ増えて、創作の積み重ねが見える部屋になります。"
+            };
 
   return (
     <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
@@ -50,8 +70,9 @@ export function RoomGrowthPanel({
           <div>
             <p className="text-sm text-muted">room wall</p>
             <h2 className="mt-2 text-3xl font-light leading-tight text-ink">
-              飾るたびに、壁が少し育つ。
+              {roomStage.title}
             </h2>
+            <p className="mt-3 max-w-xl text-sm leading-7 text-muted">{roomStage.body}</p>
           </div>
           <ButtonLink href={`/new?themeId=${todayTheme.id}`}>今日の一枚を飾る</ButtonLink>
         </div>
