@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { ChangeEvent } from "react";
-import { Check, ImagePlus, Palette, SlidersHorizontal } from "lucide-react";
+import { Check, ImagePlus, Palette, SlidersHorizontal, Sparkles } from "lucide-react";
 import { FrameShell } from "@/components/artwork/FrameShell";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { FRAME_STYLES, MATERIALS } from "@/lib/constants";
@@ -13,6 +13,8 @@ import { markDemoArtworkFramed } from "@/components/theme/DemoThemeGallery";
 const demoFrames = FRAME_STYLES.filter((frame) =>
   ["blank", "wood", "mat", "black"].includes(frame.id)
 );
+
+const placeholderNote = "今日見つけた色、線、気分をひとこと";
 
 export function DemoNewArtworkFlow() {
   const [imageUrl, setImageUrl] = useState("");
@@ -33,6 +35,16 @@ export function DemoNewArtworkFlow() {
       }%) saturate(${100 + adjustments.saturation}%)`,
     [adjustments]
   );
+
+  const selectedFrameLabel =
+    demoFrames.find((frame) => frame.id === frameStyle)?.label ?? "余白のみ";
+  const trimmedNote = note.trim();
+  const readinessItems = [
+    { label: "画像", done: Boolean(imageUrl), hint: imageUrl ? "選びました" : "あとで差し替えできます" },
+    { label: "調整", done: true, hint: "壁に合う明るさへ" },
+    { label: "画材", done: Boolean(material), hint: material },
+    { label: "額縁", done: true, hint: selectedFrameLabel }
+  ];
 
   useEffect(() => {
     return () => {
@@ -59,31 +71,101 @@ export function DemoNewArtworkFlow() {
     setCompleted(true);
   }
 
+  const artworkPreview = (
+    <FrameShell frameStyle={frameStyle}>
+      <div className="aspect-[4/5] overflow-hidden bg-paper">
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt="展示プレビュー"
+            className="h-full w-full object-contain"
+            style={{ filter }}
+          />
+        ) : (
+          <div className="grid h-full place-items-center bg-[linear-gradient(180deg,#fffaf1,#f5efe4)] px-6 text-center">
+            <div>
+              <div className="mx-auto h-24 w-20 border border-line bg-wall shadow-paper" />
+              <p className="mt-5 text-sm leading-7 text-muted">
+                画像なしでも、飾る体験を試せます。
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </FrameShell>
+  );
+
   if (completed) {
     return (
-      <section className="wall-band border border-line px-6 py-12 text-center shadow-paper">
-        <div className="mx-auto grid h-12 w-12 place-items-center border border-sage bg-wall text-sage">
-          <Check size={20} aria-hidden="true" />
-        </div>
-        <h2 className="mt-5 text-3xl font-light text-ink">
-          今日の一枚が、あなたの展示室に飾られました。
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted">
-          飾るたびに、あなたの小さな個展が育っていく。
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/theme/demo-theme?open=1">今日の展示を見る</ButtonLink>
-          <ButtonLink href="/me" variant="secondary">
-            自分の展示室へ
-          </ButtonLink>
+      <section className="wall-band border border-line px-5 py-8 shadow-paper sm:px-8 lg:px-10">
+        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
+          <div className="mx-auto w-full max-w-sm">
+            <div className="border border-line bg-wall px-6 py-8 shadow-hush">
+              <div className="mx-auto mb-6 h-px w-16 bg-line" />
+              {artworkPreview}
+              <div className="mt-5 border-t border-line pt-4 text-center">
+                <p className="text-xs text-muted">コーヒーカップ / {material}</p>
+                <p className="mt-2 text-sm leading-7 text-ink">
+                  {trimmedNote || placeholderNote}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center lg:text-left">
+            <div className="mx-auto grid h-12 w-12 place-items-center border border-sage bg-wall text-sage lg:mx-0">
+              <Check size={20} aria-hidden="true" />
+            </div>
+            <p className="mt-5 text-sm text-muted">gallery opened</p>
+            <h2 className="mt-3 text-3xl font-light leading-tight text-ink">
+              今日の一枚が、あなたの展示室に飾られました。
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-muted">
+              これで同じテーマの展示がひらきます。自分の一枚を先に置いたあとで見るから、
+              みんなの色や線の違いが、少しやさしく入ってきます。
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+              <ButtonLink href="/theme/demo-theme?open=1">今日の展示を見る</ButtonLink>
+              <ButtonLink href="/me" variant="secondary">
+                自分の展示室へ
+              </ButtonLink>
+            </div>
+          </div>
         </div>
       </section>
     );
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
+    <div className="grid gap-6 lg:grid-cols-[1fr_390px]">
       <div className="space-y-6">
+        <section className="border border-line bg-wall p-5 shadow-paper">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-sm text-muted">today's wall</p>
+              <h2 className="mt-2 text-2xl font-light text-ink">飾る準備</h2>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-4">
+              {readinessItems.map((item) => (
+                <div key={item.label} className="border border-line bg-paper px-3 py-2">
+                  <div className="flex items-center gap-2 text-xs text-ink">
+                    <span
+                      className={cn(
+                        "grid h-4 w-4 place-items-center border text-[10px]",
+                        item.done ? "border-sage bg-sage text-white" : "border-line text-muted"
+                      )}
+                    >
+                      {item.done ? "✓" : ""}
+                    </span>
+                    {item.label}
+                  </div>
+                  <p className="mt-1 text-[11px] leading-5 text-muted">{item.hint}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="border border-line bg-wall p-5 shadow-paper">
           <div className="mb-4 flex items-center gap-2 text-sm font-medium text-ink">
             <ImagePlus size={18} aria-hidden="true" />
@@ -102,7 +184,7 @@ export function DemoNewArtworkFlow() {
               <div>
                 <div className="mx-auto h-40 w-32 border border-line bg-wall shadow-paper" />
                 <p className="mt-5 text-sm text-muted">
-                  スマホで撮った絵も、額縁に入れると作品になる。
+                  スマホで撮った絵を選んでください。未選択でもこのまま流れを試せます。
                 </p>
               </div>
             )}
@@ -121,7 +203,10 @@ export function DemoNewArtworkFlow() {
               ["saturation", "彩度"]
             ].map(([key, label]) => (
               <label key={key} className="text-sm text-muted">
-                {label}
+                <span className="flex items-center justify-between gap-4">
+                  <span>{label}</span>
+                  <span>{adjustments[key as keyof ImageAdjustments]}</span>
+                </span>
                 <input
                   className="range-input mt-2 w-full"
                   type="range"
@@ -172,10 +257,11 @@ export function DemoNewArtworkFlow() {
               id="demo-note"
               value={note}
               onChange={(event) => setNote(event.target.value)}
-              placeholder="今日見つけた色、線、気分をひとこと"
+              placeholder={placeholderNote}
               className="mt-4 min-h-44 w-full resize-none border border-line bg-paper px-3 py-3 text-sm leading-7 text-ink outline-none transition focus:border-sage"
               maxLength={120}
             />
+            <p className="mt-2 text-xs text-muted">{note.length}/120</p>
           </div>
         </section>
 
@@ -203,34 +289,29 @@ export function DemoNewArtworkFlow() {
 
       <aside className="h-fit lg:sticky lg:top-24">
         <section className="wall-band border border-line p-5 shadow-paper">
-          <p className="mb-4 text-sm font-medium text-ink">Step 6 展示プレビュー</p>
-          <FrameShell frameStyle={frameStyle}>
-            <div className="aspect-[4/5] overflow-hidden bg-paper">
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="展示プレビュー"
-                  className="h-full w-full object-contain"
-                  style={{ filter }}
-                />
-              ) : (
-                <div className="grid h-full place-items-center px-6 text-center text-sm text-muted">
-                  先に比べない。まずは自分の一枚を飾る。
-                </div>
-              )}
-            </div>
-          </FrameShell>
+          <div className="mb-4 flex items-center gap-2 text-sm font-medium text-ink">
+            <Sparkles size={17} aria-hidden="true" />
+            Step 6 展示プレビュー
+          </div>
+          <div className="border border-line bg-wall px-5 py-6 shadow-paper">
+            <div className="mx-auto mb-5 h-px w-16 bg-line" />
+            {artworkPreview}
+          </div>
           <div className="mt-5 space-y-3">
             <div className="flex flex-wrap gap-2 text-xs text-muted">
               <span className="border border-line bg-wall px-2 py-1">コーヒーカップ</span>
               <span className="border border-line bg-wall px-2 py-1">{material}</span>
+              <span className="border border-line bg-wall px-2 py-1">{selectedFrameLabel}</span>
             </div>
             <p className="text-sm leading-7 text-ink">
-              {note || "今日見つけた色、線、気分をひとこと"}
+              {trimmedNote || placeholderNote}
             </p>
-            <Button className="w-full" onClick={completeDemoFraming}>
+            <Button className="w-full" type="button" onClick={completeDemoFraming}>
               展示室に飾る
             </Button>
+            <p className="text-center text-xs leading-6 text-muted">
+              飾ると、同じテーマの展示がひらきます。
+            </p>
           </div>
         </section>
       </aside>

@@ -21,9 +21,12 @@ export default async function NewArtworkPage({
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <section className="mb-8">
           <p className="text-sm text-muted">new work for today's wall</p>
-          <h1 className="mt-3 text-4xl font-light text-ink">「コーヒーカップ」を飾る</h1>
+          <h1 className="mt-3 text-4xl font-light leading-tight text-ink">
+            「コーヒーカップ」を展示室に飾る
+          </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
             描く、整える、額縁に入れる、展示室に飾る。まずは自分の一枚から始めます。
+            このデモでは保存なしで、飾る体験だけを試せます。
           </p>
         </section>
         <DemoNewArtworkFlow />
@@ -47,7 +50,9 @@ export default async function NewArtworkPage({
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <section className="mb-8">
         <p className="text-sm text-muted">new work for today's wall</p>
-        <h1 className="mt-3 text-4xl font-light text-ink">「{theme.title}」を飾る</h1>
+        <h1 className="mt-3 text-4xl font-light leading-tight text-ink">
+          「{theme.title}」を展示室に飾る
+        </h1>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
           写真を選び、少し整えて、額縁を選びます。最後に展示室へそっと飾りましょう。
         </p>

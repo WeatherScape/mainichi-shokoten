@@ -1,6 +1,7 @@
 import { Brush, GalleryHorizontal, KeyRound } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { DemoArtworkGrid } from "@/components/artwork/DemoArtworkCard";
+import { ExperiencePath } from "@/components/home/ExperiencePath";
 import { ButtonLink } from "@/components/ui/Button";
 import { ThemeHero } from "@/components/theme/ThemeHero";
 import {
@@ -60,21 +61,26 @@ export default async function HomePage() {
         })}
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+      <ExperiencePath />
+
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
             <p className="text-sm text-muted">six views of one theme</p>
-            <h2 className="mt-2 text-3xl font-light text-ink">
+            <h2 className="mt-2 text-3xl font-light leading-tight text-ink">
               同じテーマなのに、世界はこんなに違って見える。
             </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              透明水彩、ペン画、オイルパステル。うまさではなく、見え方の違いを楽しみます。
+              透明水彩、ペン画、オイルパステル、デジタル。うまさではなく、見え方の違いを楽しみます。
               スマホで撮った絵も、額縁に入れると作品になります。
             </p>
           </div>
-          <ButtonLink href="/theme/demo-theme" variant="secondary">
-            展示を見る
-          </ButtonLink>
+          <div className="flex flex-wrap gap-3">
+            <ButtonLink href="/new?themeId=demo-theme">このテーマで飾る</ButtonLink>
+            <ButtonLink href="/theme/demo-theme" variant="secondary">
+              展示を見る
+            </ButtonLink>
+          </div>
         </div>
         <DemoArtworkGrid />
         <div className="mt-8 border border-line bg-wall px-5 py-4 text-sm leading-7 text-muted shadow-paper">

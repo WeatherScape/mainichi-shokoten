@@ -32,7 +32,13 @@ export default async function ThemePage({
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">
             先に比べない。まずは自分の一枚を飾る。飾ると、みんなの見え方がひらきます。
+            透明水彩、ペン画、色鉛筆、デジタル。同じテーマの違いを、飾ったあとで眺めます。
           </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs text-muted">
+            <span className="border border-line bg-wall px-3 py-2">推奨 15分</span>
+            <span className="border border-line bg-wall px-3 py-2">好きな画材で</span>
+            <span className="border border-line bg-wall px-3 py-2">展示後にギャラリー解放</span>
+          </div>
           <div className="mt-7">
             <ButtonLink href="/new?themeId=demo-theme">描いたら飾る</ButtonLink>
           </div>
