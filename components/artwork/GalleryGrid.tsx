@@ -15,7 +15,7 @@ export function GalleryGrid({
     return (
       <EmptyState
         title="まだ、壁は静かです。"
-        body="このテーマに作品が飾られると、ここに少しずつ並びます。"
+        body="このテーマに作品が飾られると、ここに少しずつ並びます。最初の一枚が、展示の入口になります。"
       />
     );
   }

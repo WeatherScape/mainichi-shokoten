@@ -1,11 +1,18 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import { HeartHandshake } from "lucide-react";
+import { Eye, Palette, PenLine } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { REACTIONS } from "@/lib/constants";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import type { ReactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
+
+const reactionMeta: Record<ReactionType, { icon: LucideIcon; hint: string }> = {
+  color: { icon: Palette, hint: "色に目が止まった" },
+  line: { icon: PenLine, hint: "線をもう一度見たい" },
+  view: { icon: Eye, hint: "見方がひらいた" }
+};
 
 export function ReactionButtons({
   artworkId,
@@ -36,7 +43,7 @@ export function ReactionButtons({
 
   function react(type: ReactionType) {
     if (!currentUserId) {
-      setMessage("ログインすると、そっと反応を残せます。");
+      setMessage("ログインすると、そっと鑑賞のしるしを残せます。");
       return;
     }
 
@@ -54,15 +61,17 @@ export function ReactionButtons({
       }
 
       setSelected((current) => (current.includes(type) ? current : [...current, type]));
-      setMessage("受け取りました。");
+      setMessage("鑑賞のしるしを置きました。");
     });
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 border-t border-line pt-3">
+      <p className="text-xs text-muted">そっと残すリアクション</p>
       <div className="grid gap-2 sm:grid-cols-3">
         {REACTIONS.map((reaction) => {
           const active = selected.includes(reaction.type);
+          const Icon = reactionMeta[reaction.type].icon;
           return (
             <button
               key={reaction.type}
@@ -70,14 +79,28 @@ export function ReactionButtons({
               disabled={isPending || active}
               onClick={() => react(reaction.type)}
               className={cn(
-                "inline-flex min-h-10 items-center justify-center gap-2 border px-3 py-2 text-xs transition",
+                "group min-h-16 border px-3 py-3 text-left text-xs transition disabled:cursor-default",
                 active
                   ? "border-sage bg-sage/10 text-sage"
-                  : "border-line bg-wall text-muted hover:border-sage hover:text-ink"
+                  : "border-line bg-paper text-muted hover:border-sage hover:bg-wall hover:text-ink"
               )}
             >
-              <HeartHandshake size={14} aria-hidden="true" />
-              {reaction.label}
+              <span className="flex items-center gap-2">
+                <span
+                  className={cn(
+                    "grid h-7 w-7 place-items-center border transition",
+                    active
+                      ? "border-sage bg-wall"
+                      : "border-line bg-wall text-sage group-hover:border-sage"
+                  )}
+                >
+                  <Icon size={14} aria-hidden="true" />
+                </span>
+                <span className="font-medium">{reaction.label}</span>
+              </span>
+              <span className="mt-2 block leading-5 opacity-75">
+                {active ? "残しました" : reactionMeta[reaction.type].hint}
+              </span>
             </button>
           );
         })}
