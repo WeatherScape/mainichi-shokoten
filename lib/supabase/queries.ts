@@ -54,7 +54,7 @@ export async function getTodayTheme() {
   return (
     (fallback as Theme | null) ?? {
       id: "demo-theme",
-      title: "コーヒーカップ",
+      title: "窓辺",
       description: DEFAULT_THEME_DESCRIPTION,
       date: today,
       created_at: new Date().toISOString()

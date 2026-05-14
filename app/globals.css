@@ -120,6 +120,171 @@ select {
   accent-color: #667761;
 }
 
+.demo-flower-art {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 48% 34%, rgba(255, 255, 255, 0.92), transparent 26%),
+    linear-gradient(180deg, #fffaf1, #f4efe4);
+}
+
+.demo-flower-art span {
+  position: absolute;
+  display: block;
+}
+
+.demo-flower-stem {
+  left: 49%;
+  top: 47%;
+  width: 2px;
+  height: 34%;
+  background: rgba(95, 118, 91, 0.42);
+  transform: rotate(5deg);
+  transform-origin: top;
+}
+
+.demo-flower-leaf {
+  width: 24%;
+  height: 10%;
+  border-radius: 999px 999px 999px 0;
+  background: rgba(104, 127, 97, 0.18);
+}
+
+.demo-flower-leaf-left {
+  left: 30%;
+  top: 63%;
+  transform: rotate(-28deg);
+}
+
+.demo-flower-leaf-right {
+  left: 50%;
+  top: 58%;
+  transform: rotate(24deg);
+}
+
+.demo-flower-petal {
+  left: 39%;
+  top: 25%;
+  width: 22%;
+  height: 31%;
+  border-radius: 50% 50% 45% 45%;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(82, 78, 68, 0.12);
+  transform-origin: 50% 82%;
+}
+
+.demo-flower-petal-a {
+  transform: rotate(-42deg) translateY(2%);
+}
+
+.demo-flower-petal-b {
+  transform: rotate(0deg) translateY(-7%);
+}
+
+.demo-flower-petal-c {
+  transform: rotate(42deg) translateY(2%);
+}
+
+.demo-flower-petal-d {
+  transform: rotate(90deg) translateY(10%);
+}
+
+.demo-flower-core {
+  left: 46%;
+  top: 42%;
+  width: 8%;
+  height: 8%;
+  border-radius: 999px;
+  background: rgba(188, 163, 97, 0.48);
+}
+
+.demo-flower-shadow {
+  left: 31%;
+  bottom: 16%;
+  width: 42%;
+  height: 7%;
+  border-radius: 999px;
+  background: rgba(39, 35, 29, 0.12);
+  filter: blur(10px);
+}
+
+.demo-flower-watercolor {
+  background:
+    radial-gradient(circle at 35% 26%, rgba(171, 195, 188, 0.34), transparent 29%),
+    radial-gradient(circle at 65% 62%, rgba(210, 162, 130, 0.22), transparent 36%),
+    #fbf8f0;
+}
+
+.demo-flower-watercolor .demo-flower-petal {
+  background: rgba(255, 255, 255, 0.58);
+  border-color: rgba(102, 119, 97, 0.08);
+  filter: blur(1.5px);
+}
+
+.demo-flower-pastel {
+  background:
+    linear-gradient(145deg, rgba(226, 164, 101, 0.28), transparent 48%),
+    #fff4e4;
+}
+
+.demo-flower-pastel .demo-flower-petal {
+  background: rgba(255, 247, 224, 0.9);
+  border: 0;
+  box-shadow: inset 0 0 0 10px rgba(236, 197, 141, 0.14);
+}
+
+.demo-flower-pen {
+  background:
+    repeating-linear-gradient(150deg, transparent 0 16px, rgba(39, 35, 29, 0.08) 17px 18px),
+    #fffdf8;
+}
+
+.demo-flower-pen .demo-flower-petal,
+.demo-flower-pen .demo-flower-core,
+.demo-flower-pen .demo-flower-leaf,
+.demo-flower-pen .demo-flower-stem {
+  background: transparent;
+  border: 1px solid rgba(39, 35, 29, 0.42);
+}
+
+.demo-flower-pencil {
+  background:
+    linear-gradient(180deg, rgba(245, 232, 204, 0.34), transparent 58%),
+    repeating-linear-gradient(12deg, transparent 0 10px, rgba(39, 35, 29, 0.035) 11px 12px),
+    #fffdf8;
+}
+
+.demo-flower-pencil .demo-flower-petal {
+  background: rgba(255, 255, 255, 0.38);
+  border-color: rgba(39, 35, 29, 0.24);
+}
+
+.demo-flower-acrylic {
+  background:
+    linear-gradient(120deg, rgba(86, 104, 92, 0.34), transparent 42%),
+    linear-gradient(40deg, transparent 48%, rgba(174, 114, 85, 0.28) 49% 66%, transparent 67%),
+    #f3efe6;
+}
+
+.demo-flower-acrylic .demo-flower-petal {
+  background: #fff8e8;
+  border-color: rgba(39, 35, 29, 0.18);
+}
+
+.demo-flower-digital {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(185, 205, 204, 0.22), transparent 36%),
+    linear-gradient(180deg, rgba(255, 253, 248, 0.2), rgba(102, 119, 97, 0.16)),
+    #f8f8f2;
+}
+
+.demo-flower-digital .demo-flower-petal {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(222, 230, 223, 0.52));
+  border-color: rgba(102, 119, 97, 0.18);
+}
+
 .demo-art-watercolor {
   background:
     radial-gradient(circle at 38% 30%, rgba(160, 184, 178, 0.38), transparent 30%),

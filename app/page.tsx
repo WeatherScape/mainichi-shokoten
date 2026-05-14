@@ -66,25 +66,26 @@ export default async function HomePage() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
-            <p className="text-sm text-muted">six views of one theme</p>
+            <p className="text-sm text-muted">expression samples / 今日のお題ではありません</p>
             <h2 className="mt-2 text-3xl font-light leading-tight text-ink">
-              同じテーマなのに、世界はこんなに違って見える。
+              表現の見本として、別のお題「白い花」を並べています。
             </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              透明水彩、ペン画、オイルパステル、デジタル。うまさではなく、見え方の違いを楽しみます。
-              スマホで撮った絵も、額縁に入れると作品になります。
+              これは今日のお題の先出しではなく、画材ごとの見え方を伝えるためのサンプルです。
+              実際の今日のお題は、上のテーマを描いてから展示がひらきます。
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/new?themeId=demo-theme">まず一枚飾ってみる</ButtonLink>
+            <ButtonLink href="/new?themeId=demo-theme">デモで飾る流れを見る</ButtonLink>
             <ButtonLink href="/theme/demo-theme" variant="secondary">
-              展示を見る
+              サンプル展示を見る
             </ButtonLink>
           </div>
         </div>
         <DemoArtworkGrid />
         <div className="mt-8 border border-line bg-wall px-5 py-4 text-sm leading-7 text-muted shadow-paper">
-          先に比べない。まずは自分の一枚を飾る。飾るたびに、あなたの小さな個展が育っていく。
+          サンプルは「白い花」。今日のお題とは切り分けて、サービスの雰囲気だけを見せています。
+          本番では、先に比べない。まずは自分の一枚を飾る。
         </div>
       </section>
     </main>

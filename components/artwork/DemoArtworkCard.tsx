@@ -2,6 +2,8 @@ import { FrameShell } from "@/components/artwork/FrameShell";
 import type { FrameStyle, Material } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
+export const DEMO_SAMPLE_THEME = "白い花";
+
 export type DemoArtworkVariant =
   | "watercolor"
   | "pastel"
@@ -16,7 +18,6 @@ export type DemoArtwork = {
   note: string;
   frameStyle: FrameStyle;
   variant: DemoArtworkVariant;
-  imageSrc: string;
   textureLabel: string;
 };
 
@@ -24,58 +25,68 @@ export const DEMO_ARTWORKS: DemoArtwork[] = [
   {
     id: "watercolor",
     material: "透明水彩",
-    note: "朝の光がにじむ感じを残しました。",
+    note: "花びらのふちが光に溶ける感じを残しました。",
     frameStyle: "blank",
     variant: "watercolor",
-    imageSrc: "/demo-art/watercolor.png",
     textureLabel: "淡いにじみ"
   },
   {
     id: "pastel",
     material: "オイルパステル",
-    note: "湯気より、あたたかい色を描きました。",
+    note: "白い花のあたたかさを、厚みのある色で重ねました。",
     frameStyle: "wood",
     variant: "pastel",
-    imageSrc: "/demo-art/pastel.png",
     textureLabel: "重ねた厚み"
   },
   {
     id: "pen",
     material: "ペン画",
-    note: "カップの影だけを線で追いました。",
+    note: "花の影だけを細い線で追いました。",
     frameStyle: "mat",
     variant: "pen",
-    imageSrc: "/demo-art/pen.png",
     textureLabel: "細い観察線"
   },
   {
     id: "pencil",
     material: "色鉛筆",
-    note: "白い余白を多めに残しました。",
+    note: "紙の白を花びらに残しました。",
     frameStyle: "blank",
     variant: "pencil",
-    imageSrc: "/demo-art/pencil.png",
     textureLabel: "やわらかな紙目"
   },
   {
     id: "acrylic",
     material: "アクリル",
-    note: "机の上の光をはっきり描きました。",
+    note: "背景の色で白い花を立たせました。",
     frameStyle: "black",
     variant: "acrylic",
-    imageSrc: "/demo-art/acrylic.png",
     textureLabel: "くっきりした面"
   },
   {
     id: "digital",
     material: "デジタル",
-    note: "静かな朝の空気を重ねました。",
+    note: "透ける白を少しずつ重ねました。",
     frameStyle: "mat",
     variant: "digital",
-    imageSrc: "/demo-art/digital.png",
     textureLabel: "薄い光の層"
   }
 ];
+
+function DemoSampleArt({ variant }: { variant: DemoArtworkVariant }) {
+  return (
+    <div className={cn("demo-flower-art", `demo-flower-${variant}`)}>
+      <span className="demo-flower-stem" />
+      <span className="demo-flower-leaf demo-flower-leaf-left" />
+      <span className="demo-flower-leaf demo-flower-leaf-right" />
+      <span className="demo-flower-petal demo-flower-petal-a" />
+      <span className="demo-flower-petal demo-flower-petal-b" />
+      <span className="demo-flower-petal demo-flower-petal-c" />
+      <span className="demo-flower-petal demo-flower-petal-d" />
+      <span className="demo-flower-core" />
+      <span className="demo-flower-shadow" />
+    </div>
+  );
+}
 
 export function DemoArtworkCard({
   artwork,
@@ -93,17 +104,13 @@ export function DemoArtworkCard({
     >
       <FrameShell frameStyle={artwork.frameStyle}>
         <div className={cn("aspect-square overflow-hidden bg-paper", locked && "locked-blur")}>
-          <img
-            src={artwork.imageSrc}
-            alt={`${artwork.material}で描いたコーヒーカップ`}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-            loading="lazy"
-          />
+          <DemoSampleArt variant={artwork.variant} />
         </div>
       </FrameShell>
       <div className="space-y-3 px-1 pb-1 pt-4">
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
-          <span className="border border-line bg-paper px-2 py-1">コーヒーカップ</span>
+          <span className="border border-line bg-paper px-2 py-1">表現サンプル</span>
+          <span className="border border-line bg-paper px-2 py-1">{DEMO_SAMPLE_THEME}</span>
           <span className="border border-line bg-paper px-2 py-1">{artwork.material}</span>
           <span className="border border-line bg-paper px-2 py-1 text-sage">
             {artwork.textureLabel}

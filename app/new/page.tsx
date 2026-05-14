@@ -22,11 +22,11 @@ export default async function NewArtworkPage({
         <section className="mb-8">
           <p className="text-sm text-muted">new work for today's wall</p>
           <h1 className="mt-3 text-4xl font-light leading-tight text-ink">
-            「コーヒーカップ」を展示室に飾る
+            サンプル「白い花」を展示室に飾る
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
-            描く、整える、額縁に入れる、展示室に飾る。まずは自分の一枚から始めます。
-            このデモでは保存なしで、飾る体験だけを試せます。
+            これは今日のお題ではなく、飾る流れを試すためのサンプルです。
+            保存なしで、整える、額縁に入れる、展示室に飾る体験だけを触れます。
           </p>
         </section>
         <DemoNewArtworkFlow />

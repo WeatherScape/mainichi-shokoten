@@ -32,13 +32,13 @@ export function DemoThemeGallery({ initialOpen }: { initialOpen: boolean }) {
               <Check size={14} aria-hidden="true" />
               展示がひらきました
             </div>
-            <p className="text-sm text-muted">opened gallery</p>
+            <p className="text-sm text-muted">opened sample gallery</p>
             <h2 className="mt-2 text-3xl font-light leading-tight text-ink">
-              同じテーマなのに、世界はこんなに違って見える。
+              サンプルでも、画材が変わると見え方が変わります。
             </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              あなたの一枚を飾ったあとで、みんなの見え方がひらきました。
-              色、線、余白、画材の違いをゆっくり眺めてください。
+              これは今日のお題ではなく、表現の違いを伝えるための見本展示です。
+              本番では、あなたの一枚を飾ったあとで同じテーマの展示が開きます。
             </p>
           </div>
           <div className="flex max-w-xl flex-wrap gap-2">
@@ -62,16 +62,16 @@ export function DemoThemeGallery({ initialOpen }: { initialOpen: boolean }) {
           <div className="mx-auto grid h-11 w-11 place-items-center border border-line bg-paper text-sage">
             <LockKeyhole size={18} aria-hidden="true" />
           </div>
-          <p className="mt-5 text-xs text-muted">closed until your first work</p>
+          <p className="mt-5 text-xs text-muted">sample gallery</p>
           <h2 className="mt-3 text-2xl font-light leading-9 text-ink">
-            あなたの一枚を飾ると、みんなの見え方がひらきます。
+            これは今日のお題ではない、表現サンプルです。
           </h2>
           <p className="mt-4 text-sm leading-7 text-muted">
-            先に比べてしまわないように、同じテーマの展示は飾ったあとで開きます。
-            6つの画材の見え方が、この壁の奥で待っています。
+            例として「白い花」を6つの画材で並べています。
+            実際のお題は、あなたが飾るまで同じテーマの展示を見せません。
           </p>
           <ButtonLink className="mt-6" href="/new?themeId=demo-theme">
-            描いたら飾る
+            デモで飾ってみる
           </ButtonLink>
         </div>
       </div>

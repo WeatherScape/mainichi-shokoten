@@ -26,21 +26,21 @@ export default async function ThemePage({
     return (
       <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <section className="mb-10 border-b border-line pb-8">
-          <p className="text-sm text-muted">今日のテーマ</p>
+          <p className="text-sm text-muted">表現サンプル / 今日のお題ではありません</p>
           <h1 className="mt-3 text-5xl font-light leading-tight text-ink">
-            コーヒーカップ
+            白い花
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">
-            先に比べない。まずは自分の一枚を飾る。飾ると、みんなの見え方がひらきます。
-            透明水彩、ペン画、色鉛筆、デジタル。同じテーマの違いを、飾ったあとで眺めます。
+            このページは、画材ごとの見え方を伝えるためのサンプル展示です。
+            実際の今日のお題は先に比べないため、あなたの一枚を飾ったあとで開きます。
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs text-muted">
-            <span className="border border-line bg-wall px-3 py-2">推奨 15分</span>
-            <span className="border border-line bg-wall px-3 py-2">好きな画材で</span>
-            <span className="border border-line bg-wall px-3 py-2">展示後にギャラリー解放</span>
+            <span className="border border-line bg-wall px-3 py-2">デモ用</span>
+            <span className="border border-line bg-wall px-3 py-2">画材の見本</span>
+            <span className="border border-line bg-wall px-3 py-2">本番のお題とは別</span>
           </div>
           <div className="mt-7">
-            <ButtonLink href="/new?themeId=demo-theme">描いたら飾る</ButtonLink>
+            <ButtonLink href="/new?themeId=demo-theme">デモで飾ってみる</ButtonLink>
           </div>
         </section>
 
