@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getDailyThemeByDate } from "@/data/themes";
+import { getDailyThemeByDate, getDailyThemeIndex } from "@/data/themes";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { DEFAULT_THEME_DESCRIPTION } from "@/lib/constants";
 import type { Artwork, Material, Profile, Theme } from "@/lib/types";
@@ -45,15 +45,17 @@ export async function getTodayTheme() {
     return data as Theme;
   }
 
-  const { data: fallback } = await supabase
+  const { data: themes } = await supabase
     .from("themes")
     .select("*")
-    .order("date", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .order("date", { ascending: true });
 
-  if (fallback) {
-    return fallback as Theme;
+  if (themes?.length) {
+    const index = getDailyThemeIndex(today) % themes.length;
+    return {
+      ...(themes[index] as Theme),
+      date: today
+    };
   }
 
   const dailyTheme = getDailyThemeByDate(today);

@@ -5,6 +5,7 @@ import {
   getNextThemeOpenText,
   getRemainingTime,
   getRemainingTimeText,
+  getThemeDateJST,
   getThemeDeadlineDisplayText
 } from "@/lib/theme";
 import { formatDateJa } from "@/lib/utils";
@@ -20,12 +21,13 @@ export function ThemeHero({
   const remainingText = getRemainingTimeText();
   const deadlineText = getThemeDeadlineDisplayText();
   const nextThemeText = getNextThemeOpenText();
+  const themeDate = getThemeDateJST();
 
   return (
     <section className="wall-band border-b border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:py-20">
         <div className="flex flex-col justify-center">
-          <p className="text-sm text-muted">{formatDateJa(theme.date)} のテーマ</p>
+          <p className="text-sm text-muted">{formatDateJa(themeDate)} のテーマ</p>
           <h1 className="mt-4 max-w-3xl text-5xl font-light leading-tight text-ink sm:text-6xl">
             {theme.title}
           </h1>

@@ -67,7 +67,7 @@ export function DemoThemeGallery({ initialOpen }: { initialOpen: boolean }) {
             これは今日のお題ではない、表現サンプルです。
           </h2>
           <p className="mt-4 text-sm leading-7 text-muted">
-            例として「白い花」を6つの画材で並べています。
+            例として「コーヒーカップ」を6つの画材で並べています。
             実際のお題は、あなたが飾るまで同じテーマの展示を見せません。
           </p>
           <ButtonLink className="mt-6" href="/new?themeId=demo-theme">

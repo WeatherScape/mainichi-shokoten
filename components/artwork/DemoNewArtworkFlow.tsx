@@ -104,7 +104,7 @@ export function DemoNewArtworkFlow() {
               <div className="mx-auto mb-6 h-px w-16 bg-line" />
               {artworkPreview}
               <div className="mt-5 border-t border-line pt-4 text-center">
-                <p className="text-xs text-muted">白い花 / {material}</p>
+                <p className="text-xs text-muted">コーヒーカップ / {material}</p>
                 <p className="mt-2 text-sm leading-7 text-ink">
                   {trimmedNote || placeholderNote}
                 </p>
@@ -299,7 +299,7 @@ export function DemoNewArtworkFlow() {
           </div>
           <div className="mt-5 space-y-3">
             <div className="flex flex-wrap gap-2 text-xs text-muted">
-              <span className="border border-line bg-wall px-2 py-1">白い花</span>
+              <span className="border border-line bg-wall px-2 py-1">コーヒーカップ</span>
               <span className="border border-line bg-wall px-2 py-1">{material}</span>
               <span className="border border-line bg-wall px-2 py-1">{selectedFrameLabel}</span>
             </div>

@@ -22,7 +22,7 @@ export default async function NewArtworkPage({
         <section className="mb-8">
           <p className="text-sm text-muted">new work for today's wall</p>
           <h1 className="mt-3 text-4xl font-light leading-tight text-ink">
-            サンプル「白い花」を展示室に飾る
+            サンプル「コーヒーカップ」を展示室に飾る
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
             これは今日のお題ではなく、飾る流れを試すためのサンプルです。

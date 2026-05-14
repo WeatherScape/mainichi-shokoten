@@ -28,7 +28,7 @@ export default async function ThemePage({
         <section className="mb-10 border-b border-line pb-8">
           <p className="text-sm text-muted">表現サンプル / 今日のお題ではありません</p>
           <h1 className="mt-3 text-5xl font-light leading-tight text-ink">
-            白い花
+            コーヒーカップ
           </h1>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-muted">
             このページは、画材ごとの見え方を伝えるためのサンプル展示です。

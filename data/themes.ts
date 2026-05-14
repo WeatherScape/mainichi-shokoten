@@ -220,10 +220,12 @@ export const DAILY_THEMES: DailyTheme[] = [
 ];
 
 export function getDailyThemeByDate(dateKey: string) {
+  return DAILY_THEMES[getDailyThemeIndex(dateKey)];
+}
+
+export function getDailyThemeIndex(dateKey: string) {
   const base = Date.UTC(2026, 0, 1);
   const current = Date.parse(`${dateKey}T00:00:00.000Z`);
   const dayIndex = Math.floor((current - base) / (24 * 60 * 60 * 1000));
-  const index = ((dayIndex % DAILY_THEMES.length) + DAILY_THEMES.length) % DAILY_THEMES.length;
-  return DAILY_THEMES[index];
+  return ((dayIndex % DAILY_THEMES.length) + DAILY_THEMES.length) % DAILY_THEMES.length;
 }
-

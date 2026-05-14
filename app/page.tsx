@@ -68,7 +68,7 @@ export default async function HomePage() {
           <div className="max-w-2xl">
             <p className="text-sm text-muted">expression samples / 今日のお題ではありません</p>
             <h2 className="mt-2 text-3xl font-light leading-tight text-ink">
-              表現の見本として、別のお題「白い花」を並べています。
+              表現の見本として、サンプル作品を並べています。
             </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
               これは今日のお題の先出しではなく、画材ごとの見え方を伝えるためのサンプルです。
@@ -84,7 +84,7 @@ export default async function HomePage() {
         </div>
         <DemoArtworkGrid />
         <div className="mt-8 border border-line bg-wall px-5 py-4 text-sm leading-7 text-muted shadow-paper">
-          サンプルは「白い花」。今日のお題とは切り分けて、サービスの雰囲気だけを見せています。
+          下の作品は表現サンプルです。今日のお題とは切り分けて、サービスの雰囲気だけを見せています。
           本番では、先に比べない。まずは自分の一枚を飾る。
         </div>
       </section>
