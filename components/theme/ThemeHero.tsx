@@ -1,6 +1,12 @@
-import { Clock, ImagePlus, Paintbrush } from "lucide-react";
+import { CalendarClock, Clock, ImagePlus, Paintbrush, Sunrise } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import type { Theme } from "@/lib/types";
+import {
+  getNextThemeOpenText,
+  getRemainingTime,
+  getRemainingTimeText,
+  getThemeDeadlineDisplayText
+} from "@/lib/theme";
 import { formatDateJa } from "@/lib/utils";
 
 export function ThemeHero({
@@ -10,6 +16,11 @@ export function ThemeHero({
   theme: Theme;
   hasArtwork: boolean;
 }) {
+  const remaining = getRemainingTime();
+  const remainingText = getRemainingTimeText();
+  const deadlineText = getThemeDeadlineDisplayText();
+  const nextThemeText = getNextThemeOpenText();
+
   return (
     <section className="wall-band border-b border-line">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:py-20">
@@ -23,13 +34,42 @@ export function ThemeHero({
           </p>
           <div className="mt-8 flex flex-wrap gap-3 text-sm text-muted">
             <span className="inline-flex items-center gap-2 border border-line bg-wall px-3 py-2">
-              <Clock size={16} aria-hidden="true" />
-              推奨時間 15分
+              <Paintbrush size={16} aria-hidden="true" />
+              好きな画材で
             </span>
             <span className="inline-flex items-center gap-2 border border-line bg-wall px-3 py-2">
-              <Paintbrush size={16} aria-hidden="true" />
-              好きな画材で描いてください
+              <Clock size={16} aria-hidden="true" />
+              少し描いても、ゆっくり描いても
             </span>
+            <span className="inline-flex items-center gap-2 border border-line bg-wall px-3 py-2">
+              <Sunrise size={16} aria-hidden="true" />
+              毎朝5:00に切り替え
+            </span>
+          </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div
+              className={
+                remaining.isAlmostClosed
+                  ? "border border-clay/50 bg-clay/10 p-4 shadow-paper"
+                  : "border border-line bg-wall p-4 shadow-paper"
+              }
+            >
+              <p className="text-xs text-muted">残り時間</p>
+              <p className="mt-2 text-lg font-light leading-7 text-ink">{remainingText}</p>
+            </div>
+            <div className="border border-line bg-wall p-4 shadow-paper">
+              <p className="text-xs text-muted">締切</p>
+              <p className="mt-2 text-sm leading-7 text-ink">{deadlineText}</p>
+              <p className="mt-1 text-xs text-muted">翌朝4:59まで</p>
+            </div>
+            <div className="border border-line bg-wall p-4 shadow-paper">
+              <p className="text-xs text-muted">次の切り替え</p>
+              <p className="mt-2 text-sm leading-7 text-ink">
+                <CalendarClock className="mr-1 inline text-sage" size={15} aria-hidden="true" />
+                朝5:00
+              </p>
+              <p className="mt-1 text-xs leading-5 text-muted">{nextThemeText}</p>
+            </div>
           </div>
           <div className="mt-9 flex flex-wrap gap-3">
             <ButtonLink href={`/new?themeId=${theme.id}`}>

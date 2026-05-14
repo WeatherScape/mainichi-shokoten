@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
+import { getDailyThemeByDate } from "@/data/themes";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { DEFAULT_THEME_DESCRIPTION } from "@/lib/constants";
 import type { Artwork, Material, Profile, Theme } from "@/lib/types";
-import { getTokyoDateKey } from "@/lib/utils";
+import { getThemeDateJST } from "@/lib/theme";
 
 export async function getSessionUser() {
   const supabase = createServerSupabaseClient();
@@ -33,7 +34,7 @@ export async function getProfile(userId: string) {
 
 export async function getTodayTheme() {
   const supabase = createServerSupabaseClient();
-  const today = getTokyoDateKey();
+  const today = getThemeDateJST();
   const { data } = await supabase
     .from("themes")
     .select("*")
@@ -51,15 +52,19 @@ export async function getTodayTheme() {
     .limit(1)
     .maybeSingle();
 
-  return (
-    (fallback as Theme | null) ?? {
-      id: "demo-theme",
-      title: "窓辺",
-      description: DEFAULT_THEME_DESCRIPTION,
-      date: today,
-      created_at: new Date().toISOString()
-    }
-  );
+  if (fallback) {
+    return fallback as Theme;
+  }
+
+  const dailyTheme = getDailyThemeByDate(today);
+
+  return {
+    id: "demo-theme",
+    title: dailyTheme.title,
+    description: dailyTheme.description || DEFAULT_THEME_DESCRIPTION,
+    date: today,
+    created_at: new Date().toISOString()
+  };
 }
 
 export async function getTheme(themeId: string) {
