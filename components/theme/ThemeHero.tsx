@@ -22,6 +22,11 @@ export function ThemeHero({
   const deadlineText = getThemeDeadlineDisplayText();
   const nextThemeText = getNextThemeOpenText();
   const themeDate = getThemeDateJST();
+  const themeLabels = [
+    { icon: Paintbrush, text: "好きな画材で" },
+    { icon: Clock, text: "15分だけでもOK" },
+    { icon: Sunrise, text: "毎朝5:00に切り替え" }
+  ];
 
   return (
     <section className="wall-band border-b border-line">
@@ -34,20 +39,24 @@ export function ThemeHero({
           <p className="mt-6 max-w-2xl text-base leading-8 text-muted sm:text-lg">
             {theme.description}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3 text-sm text-muted">
-            <span className="inline-flex items-center gap-2 border border-line bg-wall px-3 py-2">
-              <Paintbrush size={16} aria-hidden="true" />
-              好きな画材で
-            </span>
-            <span className="inline-flex items-center gap-2 border border-line bg-wall px-3 py-2">
-              <Clock size={16} aria-hidden="true" />
-              少し描いても、ゆっくり描いても
-            </span>
-            <span className="inline-flex items-center gap-2 border border-line bg-wall px-3 py-2">
-              <Sunrise size={16} aria-hidden="true" />
-              毎朝5:00に切り替え
-            </span>
+
+          <div className="mt-8">
+            <div className="flex flex-wrap gap-3">
+              {themeLabels.map(({ icon: Icon, text }) => (
+                <span
+                  key={text}
+                  className="inline-flex items-center gap-2 border border-line bg-wall/80 px-4 py-2.5 text-sm text-muted shadow-paper"
+                >
+                  <Icon size={16} className="text-sage" aria-hidden="true" />
+                  {text}
+                </span>
+              ))}
+            </div>
+            <p className="mt-3 text-sm leading-7 text-muted">
+              夜に描いても、深夜に描いても大丈夫。
+            </p>
           </div>
+
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div
               className={
@@ -62,7 +71,7 @@ export function ThemeHero({
             <div className="border border-line bg-wall p-4 shadow-paper">
               <p className="text-xs text-muted">締切</p>
               <p className="mt-2 text-sm leading-7 text-ink">{deadlineText}</p>
-              <p className="mt-1 text-xs text-muted">翌朝4:59まで</p>
+              <p className="mt-1 text-xs text-muted">翌朝4:59まで飾れます</p>
             </div>
             <div className="border border-line bg-wall p-4 shadow-paper">
               <p className="text-xs text-muted">次の切り替え</p>
