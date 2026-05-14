@@ -6,11 +6,11 @@ export type DailyTheme = {
   promptHint: string;
 };
 
-export const DAILY_THEMES: DailyTheme[] = [
+const CONCRETE_THEMES: DailyTheme[] = [
   {
     id: "coffee-cup",
     title: "コーヒーカップ",
-    description: "手の中のあたたかさや、朝の影を描いてみましょう。",
+    description: "手の中のあたたかさや、飲み口の形をゆっくり見てみましょう。",
     category: "still-life",
     promptHint: "持ち手、影、飲み口の形に目を向ける"
   },
@@ -19,7 +19,7 @@ export const DAILY_THEMES: DailyTheme[] = [
     title: "鍵",
     description: "小さな金属の形や、持ち歩いてきた時間を描いてみましょう。",
     category: "daily-life",
-    promptHint: "光る部分、傷、輪の形を見る"
+    promptHint: "光る部分、歯、輪の形を見る"
   },
   {
     id: "white-flower",
@@ -29,25 +29,11 @@ export const DAILY_THEMES: DailyTheme[] = [
     promptHint: "白を塗りつぶさず、周りの色で浮かせる"
   },
   {
-    id: "window-side",
-    title: "窓辺",
-    description: "窓の近くに落ちる光や、外との距離を描いてみましょう。",
-    category: "place",
-    promptHint: "窓枠、光、置かれたものの関係を見る"
-  },
-  {
     id: "desk",
     title: "机の上",
-    description: "いつもの机にある形や散らかり方を、そのまま置いてみましょう。",
+    description: "いつもの机にある形や流れを、そのまま置いてみましょう。",
     category: "daily-life",
-    promptHint: "よく使うものを一つだけ選ぶ"
-  },
-  {
-    id: "rainy-day",
-    title: "雨の日",
-    description: "濡れた色、曇った光、静かな音を思い出して描いてみましょう。",
-    category: "weather",
-    promptHint: "窓、傘、地面の反射を探す"
+    promptHint: "よく使うものをひとつだけ選ぶ"
   },
   {
     id: "apple",
@@ -99,13 +85,6 @@ export const DAILY_THEMES: DailyTheme[] = [
     promptHint: "たたんだ傘でもよい"
   },
   {
-    id: "way-home",
-    title: "帰り道",
-    description: "今日見た道の色や、暮れていく光を思い出してみましょう。",
-    category: "memory",
-    promptHint: "実景でなく記憶の線でもよい"
-  },
-  {
     id: "vase",
     title: "花瓶",
     description: "入れ物の形と、そこにある静けさを描いてみましょう。",
@@ -113,18 +92,11 @@ export const DAILY_THEMES: DailyTheme[] = [
     promptHint: "花がなくてもよい"
   },
   {
-    id: "shadow",
-    title: "影",
-    description: "ものではなく、影そのものを主役にしてみましょう。",
-    category: "feeling",
-    promptHint: "薄い影、濃い影、ぼやけた端を見る"
-  },
-  {
     id: "blue-thing",
     title: "青いもの",
     description: "身の回りの青をひとつ選んで描いてみましょう。",
     category: "still-life",
-    promptHint: "青の中にある灰色や緑を見る"
+    promptHint: "青の中にある灰色や緑を見つける"
   },
   {
     id: "small-box",
@@ -143,9 +115,40 @@ export const DAILY_THEMES: DailyTheme[] = [
   {
     id: "hand",
     title: "手",
-    description: "形が難しくても大丈夫。線や影だけ追ってみましょう。",
+    description: "形が難しくても大丈夫。線や影だけを追ってみましょう。",
     category: "still-life",
     promptHint: "指一本だけでもよい"
+  },
+  {
+    id: "white-plate",
+    title: "白い皿",
+    description: "白い面の中にある影や反射を見つけてみましょう。",
+    category: "still-life",
+    promptHint: "皿のふちをゆっくり追う"
+  },
+  {
+    id: "today-drink",
+    title: "今日の飲み物",
+    description: "色、容器、置いた場所を今日の一枚にしてみましょう。",
+    category: "daily-life",
+    promptHint: "飲みかけでもよい"
+  }
+];
+
+const PLACE_AND_MEMORY_THEMES: DailyTheme[] = [
+  {
+    id: "window-side",
+    title: "窓辺",
+    description: "窓の近くに落ちる光や、外との距離を描いてみましょう。",
+    category: "place",
+    promptHint: "窓枠、光、置かれたものの関係を見る"
+  },
+  {
+    id: "way-home",
+    title: "帰り道",
+    description: "今日見た道の色や、暮れていく光を思い出して描いてみましょう。",
+    category: "memory",
+    promptHint: "実景でなく記憶の線でもよい"
   },
   {
     id: "desk-edge",
@@ -162,32 +165,11 @@ export const DAILY_THEMES: DailyTheme[] = [
     promptHint: "傷や色あせを見つける"
   },
   {
-    id: "warm-thing",
-    title: "あたたかいもの",
-    description: "温度そのものを、色や線で置いてみましょう。",
-    category: "feeling",
-    promptHint: "湯気、布、手触りを思い出す"
-  },
-  {
-    id: "sleepy-morning",
-    title: "眠い朝",
-    description: "ぼんやりした輪郭や、まだ起ききらない色を描いてみましょう。",
-    category: "feeling",
-    promptHint: "はっきり描かなくてもよい"
-  },
-  {
     id: "still-used",
     title: "まだ使っているもの",
     description: "買い替えていない理由や、手になじんだ形を描いてみましょう。",
     category: "memory",
     promptHint: "使い込んだ跡を見る"
-  },
-  {
-    id: "white-plate",
-    title: "白い皿",
-    description: "白い面の中にある影や反射を見つけてみましょう。",
-    category: "still-life",
-    promptHint: "皿のふちをゆっくり追う"
   },
   {
     id: "inside-bag",
@@ -202,13 +184,37 @@ export const DAILY_THEMES: DailyTheme[] = [
     description: "見えるものだけでなく、距離や空気も描いてみましょう。",
     category: "place",
     promptHint: "遠くをぼかしてもよい"
+  }
+];
+
+const FEELING_THEMES: DailyTheme[] = [
+  {
+    id: "rainy-day",
+    title: "雨の日",
+    description: "濡れた色、曇った光、静かな音を思い出して描いてみましょう。",
+    category: "weather",
+    promptHint: "窓、傘、地面の反射を探す"
   },
   {
-    id: "today-drink",
-    title: "今日の飲み物",
-    description: "色、容器、置いた場所を今日の一枚にしてみましょう。",
-    category: "daily-life",
-    promptHint: "飲みかけでもよい"
+    id: "shadow",
+    title: "影",
+    description: "ものではなく、影そのものを主役にしてみましょう。",
+    category: "feeling",
+    promptHint: "薄い影、濃い影、ぼやけた端を見る"
+  },
+  {
+    id: "warm-thing",
+    title: "あたたかいもの",
+    description: "温度そのものを、色や線で置いてみましょう。",
+    category: "feeling",
+    promptHint: "湯気、布、手触りを思い出す"
+  },
+  {
+    id: "sleepy-morning",
+    title: "眠い朝",
+    description: "ぼんやりした輪郭や、まだ起ききらない色を描いてみましょう。",
+    category: "feeling",
+    promptHint: "はっきり描かなくてもよい"
   },
   {
     id: "do-not-lose",
@@ -219,13 +225,40 @@ export const DAILY_THEMES: DailyTheme[] = [
   }
 ];
 
+export const DAILY_THEMES: DailyTheme[] = [
+  ...CONCRETE_THEMES,
+  ...PLACE_AND_MEMORY_THEMES,
+  ...FEELING_THEMES
+];
+
+function getDayIndex(dateKey: string) {
+  const base = Date.UTC(2026, 0, 1);
+  const current = Date.parse(`${dateKey}T00:00:00.000Z`);
+  return Math.floor((current - base) / (24 * 60 * 60 * 1000));
+}
+
+function getThemeForWeekday(dateKey: string) {
+  const dayIndex = getDayIndex(dateKey);
+  const weekday = new Date(`${dateKey}T00:00:00.000Z`).getUTCDay();
+  const weekIndex = Math.floor(dayIndex / 7);
+
+  if (weekday === 0) {
+    return FEELING_THEMES[weekIndex % FEELING_THEMES.length];
+  }
+
+  if (weekday === 6) {
+    return PLACE_AND_MEMORY_THEMES[weekIndex % PLACE_AND_MEMORY_THEMES.length];
+  }
+
+  return CONCRETE_THEMES[dayIndex % CONCRETE_THEMES.length];
+}
+
 export function getDailyThemeByDate(dateKey: string) {
-  return DAILY_THEMES[getDailyThemeIndex(dateKey)];
+  return getThemeForWeekday(dateKey);
 }
 
 export function getDailyThemeIndex(dateKey: string) {
-  const base = Date.UTC(2026, 0, 1);
-  const current = Date.parse(`${dateKey}T00:00:00.000Z`);
-  const dayIndex = Math.floor((current - base) / (24 * 60 * 60 * 1000));
-  return ((dayIndex % DAILY_THEMES.length) + DAILY_THEMES.length) % DAILY_THEMES.length;
+  const theme = getDailyThemeByDate(dateKey);
+  const index = DAILY_THEMES.findIndex((candidate) => candidate.id === theme.id);
+  return index >= 0 ? index : 0;
 }

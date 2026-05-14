@@ -8,7 +8,8 @@ export default function LoginPage() {
         <p className="text-sm text-muted">your quiet room</p>
         <h1 className="mt-3 text-4xl font-light text-ink">展示室をひらく</h1>
         <p className="mt-4 text-sm leading-7 text-muted">
-          作品を飾るための小さな名前を決めます。あとからメールで戻る入口も使えます。
+          作品を飾るための小さな入口です。メールで戻れるようにしておくと、
+          スマホを替えても同じ展示室に帰ってこられます。
         </p>
       </div>
       <Suspense>

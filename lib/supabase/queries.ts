@@ -35,6 +35,7 @@ export async function getProfile(userId: string) {
 export async function getTodayTheme() {
   const supabase = createServerSupabaseClient();
   const today = getThemeDateJST();
+  const dailyTheme = getDailyThemeByDate(today);
   const { data } = await supabase
     .from("themes")
     .select("*")
@@ -42,7 +43,11 @@ export async function getTodayTheme() {
     .maybeSingle();
 
   if (data) {
-    return data as Theme;
+    return {
+      ...(data as Theme),
+      title: dailyTheme.title,
+      description: dailyTheme.description || DEFAULT_THEME_DESCRIPTION
+    };
   }
 
   const { data: themes } = await supabase
@@ -54,11 +59,11 @@ export async function getTodayTheme() {
     const index = getDailyThemeIndex(today) % themes.length;
     return {
       ...(themes[index] as Theme),
+      title: dailyTheme.title,
+      description: dailyTheme.description || DEFAULT_THEME_DESCRIPTION,
       date: today
     };
   }
-
-  const dailyTheme = getDailyThemeByDate(today);
 
   return {
     id: "demo-theme",
@@ -77,7 +82,16 @@ export async function getTheme(themeId: string) {
     .eq("id", themeId)
     .maybeSingle();
 
-  return data as Theme | null;
+  if (!data) {
+    return null;
+  }
+
+  const todayTheme = await getTodayTheme();
+  if (todayTheme.id === themeId) {
+    return todayTheme;
+  }
+
+  return data as Theme;
 }
 
 export async function getArtworkForTheme(userId: string, themeId: string) {
